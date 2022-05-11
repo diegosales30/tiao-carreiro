@@ -1,5 +1,6 @@
 import Header from "../Header";
 import ListItens from "../ListItens";
+import ModalAlbum from "../ModalAlbum";
 import SearchBox from "../SearchBox";
 import { ContainerHome } from "./style";
 
@@ -8,6 +9,7 @@ const Home = () => {
     <ContainerHome>
       <Header />
       <SearchBox />
+      {/* <ModalAlbum /> */}
       <ListItens />
     </ContainerHome>
   );

@@ -33,6 +33,7 @@ export const BoxSearch = styled.div`
       border-radius: 30px;
       margin-right: 10px;
       background-color: #4c89e3;
+      color: white;
     }
   }
 `;
