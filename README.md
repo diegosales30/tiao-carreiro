@@ -18,9 +18,9 @@ Instale as dependencias:
 ```
 yarn add axios
 yarn add react-icons
-yarn add styled-components
 yarn add react-toastify
 yarn add react-hook-form yup hookform/resolvers
+yarn add redux react-redux redux-thunk
 ```
 Execute a aplicação:
 ```
