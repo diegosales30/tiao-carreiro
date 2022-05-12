@@ -4,19 +4,33 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const ModalFaixa = ({ ModalFaixa, setModalFaixa, data, setData }) => {
-  const [token] = useState("diegofelipesales23@gmail.com");
-  const [album_id, setAlbumId] = useState();
-  const [title, setTitle] = useState();
-  const [number, setNumber] = useState();
-  const [duration, setDuration] = useState();
-  const [post, setPost] = useState();
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useItens } from "../../Providers/itens";
 
-  console.log(post);
+const ModalFaixa = ({ ModalFaixa, setModalFaixa }) => {
+  const { data, setData, update, setUpdate, token } = useItens();
 
-  const handlePostFaixa = () => {
+  const schema = yup.object().shape({
+    album_id: yup.number().required("Campo obrigatório"),
+    number: yup.number().required("Campo obrigatório"),
+    title: yup.string().required("Campo obrigatório"),
+    duration: yup.number().required("Campo obrigatório"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = ({ album_id, title, number, duration }) => {
+    const tracks = { album_id, title, number, duration };
     axios
-      .post("https://tiao.supliu.com.br/api/track", post, {
+      .post("https://tiao.supliu.com.br/api/track", tracks, {
         headers: {
           Authorization: "Bearer" + token,
           "Content-Type": "application/json",
@@ -25,16 +39,13 @@ const ModalFaixa = ({ ModalFaixa, setModalFaixa, data, setData }) => {
       .then(() => {
         toast.success("cadastrado com sucesso!");
         setData([...data]);
+        setUpdate(!update);
       })
       .catch(() => {
         toast.error("erro ao adicionar!");
       });
   };
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setPost({ album_id, title, number, duration });
-  };
   return (
     <ContainerModal>
       <div>
@@ -45,31 +56,37 @@ const ModalFaixa = ({ ModalFaixa, setModalFaixa, data, setData }) => {
               <CgClose />
             </button>
           </aside>
-          <form onSubmit={handleChange}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <input
               type="number"
               placeholder="id do Album"
-              onChange={(e) => setAlbumId(e.target.value)}
+              {...register("album_id")}
+              error={errors.album_id?.message}
+              required
             />
             <input
               type="number"
               placeholder="Numero da faixa  ex: 1"
-              onChange={(e) => setNumber(e.target.value)}
+              {...register("number")}
+              error={errors.number?.message}
+              required
             />
             <input
               type="text"
               placeholder="Nome da faixa"
-              onChange={(e) => setTitle(e.target.value)}
+              {...register("title")}
+              error={errors.title?.message}
+              required
             />
 
             <input
               type="number"
               placeholder="Duração  ex: 195"
-              onChange={(e) => setDuration(e.target.value)}
+              {...register("duration")}
+              error={errors.duration?.message}
+              required
             />
-            <button type="submit" onClick={handlePostFaixa}>
-              Adicionar
-            </button>
+            <button type="submit">Adicionar</button>
           </form>
         </BoxInput>
       </div>

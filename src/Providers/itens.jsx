@@ -5,20 +5,8 @@ const ItensContext = createContext();
 
 const ItensProvider = ({ children }) => {
   const [token] = useState("diegofelipesales23@gmail.com");
-  const [date, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
-
-  //   useEffect(() => {
-  //     axios
-  //       .get("https://tiao.supliu.com.br/api/album", {
-  //         headers: {
-  //           Authorization: "Bearer" + token,
-  //           "Content-Type": "application/json",
-  //         },
-  //       })
-  //       .then((res) => setData(res.data.data))
-  //       .catch((error) => console.log(error));
-  //   }, []);
 
   const getData = () => {
     axios
@@ -36,7 +24,7 @@ const ItensProvider = ({ children }) => {
   }, [update]);
 
   return (
-    <ItensContext.Provider value={{ date, setData, update, setUpdate, token }}>
+    <ItensContext.Provider value={{ data, setData, update, setUpdate, token }}>
       {children}
     </ItensContext.Provider>
   );

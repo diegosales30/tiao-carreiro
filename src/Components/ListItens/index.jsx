@@ -14,10 +14,12 @@ import axios from "axios";
 const ListItens = () => {
   const [modal, setModal] = useState(false);
   const [modalFaixa, setModalFaixa] = useState(false);
-  const { date, update, setUpdate, token } = useItens();
+  const { data, update, setUpdate, token } = useItens();
+
+  console.log(data);
 
   //função para deletar um album
-  const handleRemove = (current) => {
+  const handleRemoveAlbum = (current) => {
     axios
       .delete(`https://tiao.supliu.com.br/api/album/${current.id}`, {
         headers: {
@@ -27,6 +29,24 @@ const ListItens = () => {
       })
       .then((_) => {
         toast.success("deletado");
+        setUpdate(!update);
+      })
+      .catch((error) => {
+        toast.error("erro ao deletar");
+        console.log(error);
+      });
+  };
+
+  const handleRemoveTrack = (current) => {
+    axios
+      .delete(`https://tiao.supliu.com.br/api/track/${current.id}`, {
+        headers: {
+          Authorization: "Bearer" + token,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((_) => {
+        toast.success("Faixa deletada");
         setUpdate(!update);
       })
       .catch((error) => {
@@ -49,7 +69,7 @@ const ListItens = () => {
           <ModalFaixa setModalFaixa={setModalFaixa} modalFaixa={modalFaixa} />
         )}
         <BoxItens>
-          {date.map((item) => (
+          {data.map((item) => (
             <main>
               <ul key={item.id}>
                 <header>
@@ -60,7 +80,7 @@ const ListItens = () => {
                     <button onClick={() => setModalFaixa(!modalFaixa)}>
                       adicionar faixa
                     </button>
-                    <button onClick={() => handleRemove(item)}>
+                    <button onClick={() => handleRemoveAlbum(item)}>
                       deletar album
                     </button>
                   </div>
@@ -88,7 +108,7 @@ const ListItens = () => {
                         </p>
                       </div>
                       <div>
-                        <button>
+                        <button onClick={() => handleRemoveTrack(item)}>
                           <TiDelete />
                         </button>
                       </div>
