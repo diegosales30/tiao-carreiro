@@ -26,6 +26,7 @@ export const BoxSearch = styled.div`
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
       margin-left: 15px;
+      padding: 0 15px;
     }
     button {
       width: 25%;

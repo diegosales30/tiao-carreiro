@@ -16,8 +16,9 @@ export const BoxList = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  border: 1px solid #ccc;
-
+  background-color: #4c89e3;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   h4 {
     margin-left: 15px;
     font-size: 25px;
@@ -25,21 +26,22 @@ export const BoxList = styled.div`
   button {
     width: 100px;
     border: none;
-    background-color: #4c89e3;
-    color: white;
-    border-radius: 5px;
+
+    color: #4c89e3;
+    border-radius: 20px;
     margin-right: 15px;
+    background-color: white;
+    font-weight: 600;
+    cursor: pointer;
   }
 `;
 
 export const BoxItens = styled.main`
-  box-shadow: 0 0 10px black;
-
   ul {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-
+    padding: 10px;
     margin-top: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     header {
@@ -56,7 +58,10 @@ export const BoxItens = styled.main`
           border: none;
           background-color: #4c89e3;
           color: white;
-          border-radius: 5px;
+          border-radius: 10px;
+          &:hover {
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+          }
         }
       }
     }
@@ -99,9 +104,9 @@ export const BoxItens = styled.main`
           border: none;
           font-size: 23px;
           background-color: transparent;
-          color: #474a51;
+          color: #ff6961;
           &:hover {
-            color: #ff6961;
+            color: #800;
           }
         }
       }

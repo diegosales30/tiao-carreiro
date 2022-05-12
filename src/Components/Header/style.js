@@ -18,4 +18,11 @@ export const ContainerHeader = styled.header`
     font-weight: 100;
     color: grey;
   }
+  @media (max-width: 477px) {
+    display: flex;
+    justify-content: center;
+    h1 {
+      display: none;
+    }
+  }
 `;

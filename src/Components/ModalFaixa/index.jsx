@@ -1,6 +1,5 @@
 import { BoxInput, ContainerModal } from "./style";
 import { CgClose } from "react-icons/cg";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -9,11 +8,10 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useItens } from "../../Providers/itens";
 
-const ModalFaixa = ({ ModalFaixa, setModalFaixa }) => {
+const ModalFaixa = ({ ModalFaixa, setModalFaixa, album_id }) => {
   const { data, setData, update, setUpdate, token } = useItens();
 
   const schema = yup.object().shape({
-    album_id: yup.number().required("Campo obrigatório"),
     number: yup.number().required("Campo obrigatório"),
     title: yup.string().required("Campo obrigatório"),
     duration: yup.number().required("Campo obrigatório"),
@@ -27,7 +25,7 @@ const ModalFaixa = ({ ModalFaixa, setModalFaixa }) => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = ({ album_id, title, number, duration }) => {
+  const onSubmit = ({ title, number, duration }) => {
     const tracks = { album_id, title, number, duration };
     axios
       .post("https://tiao.supliu.com.br/api/track", tracks, {
@@ -59,13 +57,6 @@ const ModalFaixa = ({ ModalFaixa, setModalFaixa }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               type="number"
-              placeholder="id do Album"
-              {...register("album_id")}
-              error={errors.album_id?.message}
-              required
-            />
-            <input
-              type="number"
               placeholder="Numero da faixa  ex: 1"
               {...register("number")}
               error={errors.number?.message}
@@ -81,7 +72,7 @@ const ModalFaixa = ({ ModalFaixa, setModalFaixa }) => {
 
             <input
               type="number"
-              placeholder="Duração  ex: 195"
+              placeholder="Duração em segundos  ex: 195"
               {...register("duration")}
               error={errors.duration?.message}
               required

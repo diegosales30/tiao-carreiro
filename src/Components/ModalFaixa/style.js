@@ -5,6 +5,7 @@ export const ContainerModal = styled.div`
   display: flex;
   justify-content: center;
   position: absolute;
+
   top: 30%;
   right: 50%;
   h3 {
@@ -23,6 +24,8 @@ export const ContainerModal = styled.div`
 export const BoxInput = styled.section`
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+
   aside {
     top: 0;
     right: 0;
@@ -34,9 +37,9 @@ export const BoxInput = styled.section`
       border: none;
       font-size: 23px;
       background-color: transparent;
-      color: #474a51;
+      color: #ff6961;
       &:hover {
-        color: #ff6961;
+        color: #800;
       }
     }
   }
@@ -50,9 +53,19 @@ export const BoxInput = styled.section`
     input,
     button {
       margin: auto;
-
+      border-radius: 10px;
+      border: none;
+      border: 1px solid rgba(0, 0, 0, 0.4);
       width: 80%;
       height: 40px;
+      &:placeholder-shown {
+        padding: 5px;
+      }
+    }
+    button {
+      background-color: #4c89e3;
+      border: none;
+      color: white;
     }
   }
 `;

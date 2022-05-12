@@ -58,14 +58,15 @@ const ModalAlbum = ({ modal, setModal }) => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               type="text"
-              placeholder="Digite o nome do Album"
+              placeholder="Nome do Album"
               {...register("name")}
               error={errors.name?.message}
               required
             />
+
             <input
               type="text"
-              placeholder="Ano, ex: 1961"
+              placeholder="Ano. ex: 1961"
               {...register("year")}
               error={errors.year?.message}
               required
