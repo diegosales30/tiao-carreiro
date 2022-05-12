@@ -1,5 +1,8 @@
-import { useState } from "react";
 import axios from "axios";
+
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import { BoxInput, ContainerModal } from "./style";
 import { toast } from "react-toastify";
@@ -8,13 +11,23 @@ import { CgClose } from "react-icons/cg";
 import { useItens } from "../../Providers/itens";
 
 const ModalAlbum = ({ modal, setModal }) => {
-  const [name, setName] = useState();
-  const [year, setYear] = useState();
-  const [post, setPost] = useState();
-
   const { update, setUpdate, token } = useItens();
 
-  const handlePost = () => {
+  const schema = yup.object().shape({
+    name: yup.string().required("Campo obrigatório"),
+    year: yup.string().required("Campo obrigatório"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = ({ name, year }) => {
+    const post = { name, year };
     axios
       .post("https://tiao.supliu.com.br/api/album", post, {
         headers: {
@@ -32,11 +45,6 @@ const ModalAlbum = ({ modal, setModal }) => {
       });
   };
 
-  const handleChange = (e) => {
-    e.preventDefault();
-    setPost({ name, year });
-  };
-
   return (
     <ContainerModal>
       <div>
@@ -47,23 +55,23 @@ const ModalAlbum = ({ modal, setModal }) => {
               <CgClose />
             </button>
           </aside>
-          <form onSubmit={handleChange}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <input
-              required
               type="text"
               placeholder="Digite o nome do Album"
-              onChange={(e) => setName(e.target.value)}
+              {...register("name")}
+              error={errors.name?.message}
+              required
             />
             <input
-              required
               type="text"
               placeholder="Ano, ex: 1961"
-              onChange={(e) => setYear(e.target.value)}
+              {...register("year")}
+              error={errors.year?.message}
+              required
             />
 
-            <button type="submit" onClick={handlePost}>
-              Adicionar
-            </button>
+            <button type="submit">Adicionar</button>
           </form>
         </BoxInput>
       </div>

@@ -68,7 +68,6 @@ export const BoxItens = styled.main`
       height: 50px;
       border-bottom: 1px solid #ccc;
       &:hover {
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         cursor: pointer;
       }
     }
