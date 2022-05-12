@@ -1,32 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import ModalAlbum from "../ModalAlbum";
 import ModalFaixa from "../ModalFaixa";
-import { BoxItens, BoxList, ContainerList } from "./style";
+import { BoxItens, BoxList, ContainerList, Main } from "./style";
+
 import { TiDelete } from "react-icons/ti";
 import { FaHatCowboy } from "react-icons/fa";
-import axios from "axios";
 import { toast } from "react-toastify";
+
+import { useItens } from "../../Providers/itens";
+import axios from "axios";
 
 const ListItens = () => {
   const [modal, setModal] = useState(false);
   const [modalFaixa, setModalFaixa] = useState(false);
-  const [data, setData] = useState([]);
-  const [token] = useState("diegofelipesales23@gmail.com");
-
-  console.log(data);
-
-  //função para buscar os dados do banco e listar na tela
-  useEffect(() => {
-    axios
-      .get("https://tiao.supliu.com.br/api/album", {
-        headers: {
-          Authorization: "Bearer" + token,
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => setData(res.data.data))
-      .catch((error) => console.log(error));
-  }, [data]);
+  const { date, update, setUpdate, token } = useItens();
 
   //função para deletar um album
   const handleRemove = (current) => {
@@ -39,33 +27,29 @@ const ListItens = () => {
       })
       .then((_) => {
         toast.success("deletado");
-        setData([...data]);
+        setUpdate(!update);
       })
-      .catch((error) => toast.error("erro ao deletar"));
+      .catch((error) => {
+        toast.error("erro ao deletar");
+        console.log(error);
+      });
   };
 
   return (
     <ContainerList>
-      {modal && (
-        <ModalAlbum
-          data={data}
-          setData={setData}
-          setModal={setModal}
-          modal={modal}
-        />
-      )}
+      {modal && <ModalAlbum setModal={setModal} modal={modal} />}
       <BoxList>
         <h4>
           <FaHatCowboy />
         </h4>
         <button onClick={() => setModal(!modal)}>Adicionar Album</button>
       </BoxList>
-      <>
+      <Main>
         {modalFaixa && (
           <ModalFaixa setModalFaixa={setModalFaixa} modalFaixa={modalFaixa} />
         )}
         <BoxItens>
-          {data.map((item) => (
+          {date.map((item) => (
             <main>
               <ul key={item.id}>
                 <header>
@@ -115,7 +99,7 @@ const ListItens = () => {
             </main>
           ))}
         </BoxItens>
-      </>
+      </Main>
     </ContainerList>
   );
 };

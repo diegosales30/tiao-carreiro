@@ -30,6 +30,15 @@ export const BoxInput = styled.section`
     display: flex;
     justify-content: flex-end;
     margin-right: 5px;
+    button {
+      border: none;
+      font-size: 23px;
+      background-color: transparent;
+      color: #474a51;
+      &:hover {
+        color: #ff6961;
+      }
+    }
   }
 
   form {

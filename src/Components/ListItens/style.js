@@ -17,6 +17,7 @@ export const BoxList = styled.div`
   align-items: center;
   height: 50px;
   border: 1px solid #ccc;
+
   h4 {
     margin-left: 15px;
     font-size: 25px;
@@ -107,4 +108,8 @@ export const BoxItens = styled.main`
       }
     }
   }
+`;
+
+export const Main = styled.main`
+  overflow-y: scroll;
 `;

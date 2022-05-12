@@ -1,17 +1,18 @@
-import axios from "axios";
-import { TiDelete } from "react-icons/ti";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import axios from "axios";
+
 import { BoxInput, ContainerModal } from "./style";
+import { toast } from "react-toastify";
+import { CgClose } from "react-icons/cg";
 
-const ModalAlbum = ({ modal, setModal, data, setData }) => {
-  const [token] = useState("diegofelipesales23@gmail.com");
+import { useItens } from "../../Providers/itens";
 
+const ModalAlbum = ({ modal, setModal }) => {
   const [name, setName] = useState();
   const [year, setYear] = useState();
   const [post, setPost] = useState();
 
-  console.log(data);
+  const { update, setUpdate, token } = useItens();
 
   const handlePost = () => {
     axios
@@ -23,7 +24,8 @@ const ModalAlbum = ({ modal, setModal, data, setData }) => {
       })
       .then(() => {
         toast.success("cadastrado com sucesso!");
-        setData([...data]);
+
+        setUpdate(!update);
       })
       .catch(() => {
         toast.error("erro ao adicionar!");
@@ -42,7 +44,7 @@ const ModalAlbum = ({ modal, setModal, data, setData }) => {
           <h3>Adicionar Album</h3>
           <aside>
             <button onClick={() => setModal(!modal)}>
-              <TiDelete />
+              <CgClose />
             </button>
           </aside>
           <form onSubmit={handleChange}>
