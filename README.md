@@ -1,7 +1,7 @@
  ### Deploy da aplicação com Vercel: :octocat:: 
+ --> https://tiao-carreiro.vercel.app/
 
-
-> Status do Projeto: Em Andamento 🕐:
+> Status do Projeto: finalizado 🕐:
 
 ### Tecnologias:
 - <img src="https://img.shields.io/static/v1?label=react&message=framework&color=blue&style=for-the-badge&logo=REACT"/>
