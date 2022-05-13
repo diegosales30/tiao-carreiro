@@ -2,6 +2,7 @@ import { useItens } from "../../Providers/itens";
 import { TiDelete } from "react-icons/ti";
 
 import { useListItens } from "../../Providers/ListItens";
+import Loading from "../Loading";
 
 const ItemMap = () => {
   const {
@@ -11,7 +12,7 @@ const ItemMap = () => {
     handleRemoveAlbum,
     handleRemoveTrack,
   } = useListItens();
-  const { data } = useItens();
+  const { data, loading } = useItens();
 
   return (
     <>
@@ -37,6 +38,7 @@ const ItemMap = () => {
                 </button>
               </div>
             </header>
+
             {item.tracks.map((item) => (
               <section key={item.id}>
                 <div>
@@ -70,6 +72,7 @@ const ItemMap = () => {
           </ul>
         </main>
       ))}
+      {!loading && <Loading />}
     </>
   );
 };

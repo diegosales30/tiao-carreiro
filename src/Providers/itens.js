@@ -7,6 +7,7 @@ const ItensProvider = ({ children }) => {
   const [token] = useState("diegofelipesales23@gmail.com");
   const [data, setData] = useState([]);
   const [update, setUpdate] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const getData = () => {
     axios
@@ -16,7 +17,10 @@ const ItensProvider = ({ children }) => {
           "Content-Type": "application/json",
         },
       })
-      .then((res) => setData(res.data.data))
+      .then((res) => {
+        setData(res.data.data);
+        setLoading(true);
+      })
       .catch((error) => console.log(error));
   };
   useEffect(() => {
@@ -24,7 +28,9 @@ const ItensProvider = ({ children }) => {
   }, [update]);
 
   return (
-    <ItensContext.Provider value={{ data, setData, update, setUpdate, token }}>
+    <ItensContext.Provider
+      value={{ data, setData, update, setUpdate, token, loading, setLoading }}
+    >
       {children}
     </ItensContext.Provider>
   );

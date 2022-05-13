@@ -8,7 +8,7 @@ export const ContainerList = styled.div`
   margin: auto;
   display: Flex;
   flex-direction: column;
-  background-color: rgba(235, 235, 235, 0.9);
+  background-color: var(--white-transparent);
 `;
 
 export const BoxList = styled.div`
@@ -16,7 +16,7 @@ export const BoxList = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  background-color: #4c89e3;
+  background-color: var(--blue);
   border-radius: 3px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   h4 {
@@ -27,7 +27,7 @@ export const BoxList = styled.div`
     width: 100px;
     border: none;
 
-    color: #4c89e3;
+    color: var(--blue);
     border-radius: 20px;
     margin-right: 15px;
     background-color: white;
@@ -43,7 +43,7 @@ export const BoxItens = styled.main`
     flex-direction: column;
     padding: 10px;
     margin-top: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px var(--shadow);
     header {
       display: flex;
       justify-content: space-between;
@@ -56,11 +56,11 @@ export const BoxItens = styled.main`
           width: 120px;
           margin-left: 5px;
           border: none;
-          background-color: #4c89e3;
+          background-color: var(--blue);
           color: white;
           border-radius: 10px;
           &:hover {
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 5px rvar(--shadow);
           }
         }
       }
@@ -71,7 +71,7 @@ export const BoxItens = styled.main`
       justify-content: space-between;
       align-items: center;
       height: 50px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid var(--grey);
       &:hover {
         cursor: pointer;
       }
@@ -85,7 +85,7 @@ export const BoxItens = styled.main`
         flex-direction: column;
         p {
           font-size: 14px;
-          color: #808080;
+          color: var(--font-grey);
         }
       }
     }
@@ -104,9 +104,9 @@ export const BoxItens = styled.main`
           border: none;
           font-size: 23px;
           background-color: transparent;
-          color: #ff6961;
+          color: var(--red1);
           &:hover {
-            color: #800;
+            color: var(--red2);
           }
         }
       }

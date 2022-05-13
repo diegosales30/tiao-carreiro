@@ -9,7 +9,7 @@ export const ContainerHeader = styled.header`
   display: Flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
+  background-color: var(--white);
   img {
     margin-left: 15px;
   }

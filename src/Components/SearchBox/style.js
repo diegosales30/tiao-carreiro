@@ -24,7 +24,7 @@ export const BoxSearch = styled.div`
       height: 50px;
       border: none;
       border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 10px var(--shadow);
       margin-left: 15px;
       padding: 0 15px;
     }
@@ -33,8 +33,8 @@ export const BoxSearch = styled.div`
       border: none;
       border-radius: 30px;
       margin-right: 10px;
-      background-color: #4c89e3;
-      color: white;
+      background-color: var(--blue);
+      color: var(--white);
     }
   }
 `;

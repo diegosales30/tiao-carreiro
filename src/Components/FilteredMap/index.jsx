@@ -1,6 +1,8 @@
 import { TiDelete } from "react-icons/ti";
+import { useItens } from "../../Providers/itens";
 
 import { useListItens } from "../../Providers/ListItens";
+import Loading from "../Loading";
 
 const FilteredMap = ({ filter }) => {
   const {
@@ -10,6 +12,7 @@ const FilteredMap = ({ filter }) => {
     handleRemoveAlbum,
     handleRemoveTrack,
   } = useListItens();
+  const { loading } = useItens();
 
   return (
     <>
@@ -68,6 +71,7 @@ const FilteredMap = ({ filter }) => {
           </ul>
         </main>
       ))}
+      {!loading && <Loading />}
     </>
   );
 };
