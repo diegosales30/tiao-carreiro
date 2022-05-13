@@ -19,7 +19,7 @@ Instale as dependencias:
 yarn add axios
 yarn add react-icons
 yarn add react-toastify
-yarn add react-hook-form yup hookform/resolvers
+yarn add yup react-hook-form @hookform/resolvers
 yarn add styled-components
 ```
 Execute a aplicação:
