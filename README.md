@@ -25,6 +25,7 @@ yarn add styled-components
 Execute a aplicação:
 ```
 yarn start
+iniciar
 ```
 
 ## Linguagens e libs :books:
